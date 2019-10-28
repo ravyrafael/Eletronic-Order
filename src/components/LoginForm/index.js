@@ -11,19 +11,20 @@ const LoginForm = ({setLoad, showLoad}) => {
                autoCorrect={false} 
                keyboardType='email-address' 
                returnKeyType="next" 
-               selectionColor='#892384'
+               selectionColor='#FFF'
                placeholder='User'
                placeholderTextColor='rgba(225,225,225,0.7)'/>
                
 
 <TextInput style = {styles.input}   
                placeholder='Password' 
-               selectionColor='#892384'
+               selectionColor='#FFF'
               placeholderTextColor='rgba(225,225,225,0.7)' 
               secureTextEntry/>
 
         <Button style={styles.buttonText} 
                     title="Login"
+                    color='rgba(100,120,180,0.9)'
                      onPress={()=> setLoad()}>
         </Button>
         </View>

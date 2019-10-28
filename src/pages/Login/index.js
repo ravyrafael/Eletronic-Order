@@ -4,6 +4,7 @@ import {
   Text, ActivityIndicator, StyleSheet, Dimensions, View, StatusBar,
 } from 'react-native';
 import LoginForm from '~/components/LoginForm'
+import User from '~/mocks/usersMocks.js'
 
 const styles = StyleSheet.create({
   container: {
@@ -46,11 +47,18 @@ const styles = StyleSheet.create({
 });
 
 const LoginPage = () => {
+
+
   const [showLoad, setLoad] = useState(false);
-  var setLoadInterval = ()=>{
+  var setLoadInterval = (userName, pass)=>{
     setLoad(true);
+    var userDefault = new User();
+    console.log(userDefault)
+    let userReturn = userDefault.Auth(userName, pass)
     setTimeout(()=>{ 
     setLoad(false);
+    console.log(userReturn)
+    return userReturn.length > 0
 }, 3000);
   }
   return(

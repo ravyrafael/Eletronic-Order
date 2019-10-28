@@ -2,7 +2,8 @@ import React, {  useState } from 'react'
 import { Text,View, TextInput,StyleSheet, Button,ActivityIndicator } from 'react-native'
 
 const LoginForm = ({setLoad, showLoad}) => {
-       
+        const [userName, setName] = useState('');
+        const [pass, setPass] = useState('');
         return (    
              <View style = {styles.container}>
 
@@ -11,6 +12,7 @@ const LoginForm = ({setLoad, showLoad}) => {
                autoCorrect={false} 
                keyboardType='email-address' 
                returnKeyType="next" 
+               onChangeText={(text)=> setName(text)}
                selectionColor='#FFF'
                placeholder='User'
                placeholderTextColor='rgba(225,225,225,0.7)'/>
@@ -19,13 +21,14 @@ const LoginForm = ({setLoad, showLoad}) => {
 <TextInput style = {styles.input}   
                placeholder='Password' 
                selectionColor='#FFF'
+               onChangeText={(text)=> setPass(text)}
               placeholderTextColor='rgba(225,225,225,0.7)' 
               secureTextEntry/>
 
         <Button style={styles.buttonText} 
                     title="Login"
                     color='rgba(100,120,180,0.9)'
-                     onPress={()=> setLoad()}>
+                     onPress={()=> setLoad(userName, pass)}>
         </Button>
         </View>
         )}

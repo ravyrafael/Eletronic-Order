@@ -1,4 +1,4 @@
-export default class user {
+export default class User {
     constructor(){
         this.users = [{
             id: 1,
@@ -16,7 +16,9 @@ export default class user {
         }];
     
     }
-    auth(user,pass){
-      return this.users.filter((item)=> item.name.toUpperCase() == user.toUpperCase()&&item.pass == pass);
+    Auth(user,pass){
+      return this.users
+      .filter((item)=> item.name.toUpperCase() == user.toUpperCase()&&item.pass == pass)
+      .map((item)=> {item.name, item.pass});
     }
 }

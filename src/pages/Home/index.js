@@ -1,48 +1,87 @@
 import React from 'react';
 import {
-    FlatList, StyleSheet, Text, View, StatusBar,
+    Text, StyleSheet, View, Dimensions,
   } from 'react-native';
-import CATEGORY from '~/mocks/categoryMocks'
+import { ScrollView } from 'react-native-gesture-handler';
+
+  const {height, width} = Dimensions.get('window');
 // import { Container } from './styles';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-            paddingHorizontal: 20,
-    },  
-    item: {
+        paddingHorizontal: 20,
+    }, 
+    placeContainer:{
+        width:'100%',
+        flex: 1,
+
+      }, 
+    placeView:{
+        width: width - 40,
+        maxHeight: 200,
         backgroundColor: 'gray',
-        padding: 20,
-        marginVertical: 8,
-        marginHorizontal: 16,
+        marginHorizontal: 20,
+        marginVertical:20
       },
       title: {
         fontSize: 32,
-        alignItems: 'center',
       },
 
 })
 
-function Item({title}) {
-    console.log(title)
-    return (
-      <View style={styles.item}>
-        <Text style={styles.title}>{title}</Text>
-      </View>
-    );
-  }
+
 const HomePage = () => 
 
-<View 
-    style={styles.container}
-    resizeMode="cover">
-     <FlatList
-        data={CATEGORY}
-        renderItem={({ item }) => <Item title={item.title} />}
-        keyExtractor={item => item.id}
-      />
-    <StatusBar barStyle="dark-content" backgroundColor="#FFF" />
+<ScrollView
+style={styles.placeContainer}
+scrollEnabled
+>
+  <View style={styles.placeView}>
+    <Text style={styles.title}>{`ID: 1`}</Text>
+  </View>
+  <View style={styles.placeView}>
+    <Text style={styles.title}>{`ID: 2`}</Text>
+  </View>
+  <View style={styles.placeView}>
+    <Text style={styles.title}>{`ID: 3`}</Text>
+  </View>
+  <View style={styles.placeView}>
+    <Text style={styles.title}>{`ID: 4`}</Text>
+  </View>
+  <View style={styles.placeView}>
+    <Text style={styles.title}>{`ID: 5`}</Text>
+  </View>
+  <View style={styles.placeView}>
+    <Text style={styles.title}>{`ID: 6`}</Text>
+  </View>
+  <View style={styles.placeView}>
+    <Text style={styles.title}>{`ID: 7`}</Text>
+  </View>
+  <View style={styles.placeView}>
+    <Text style={styles.title}>{`ID: 8`}</Text>
+  </View>
+  <View style={styles.placeView}>
+    <Text style={styles.title}>{`ID: 9`}</Text>
+  </View>
+  <View style={styles.placeView}>
+    <Text style={styles.title}>{`ID: 10`}</Text>
+  </View>
+  <View style={styles.placeView}>
+    <Text style={styles.title}>{`ID: 11`}</Text>
+  </View>
+  <View style={styles.placeView}>
+    <Text style={styles.title}>{`ID: 12`}</Text>
+  </View>
+  <View style={styles.placeView}>
+    <Text style={styles.title}>{`ID: 13`}</Text>
+  </View>
+  <View style={styles.placeView}>
+    <Text style={styles.title}>{`ID: 14`}</Text>
+  </View>
+  <View style={styles.placeView}>
+    <Text style={styles.title}>{`ID: 15`}</Text>
+  </View>
 
-</View>
-    ;
+</ScrollView>
 
 export default HomePage;

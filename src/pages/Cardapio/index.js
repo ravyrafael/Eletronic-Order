@@ -30,7 +30,7 @@ function Item({title}) {
       </View>
     );
   }
-const HomePage = () => 
+const Cardapio = () => 
 
 <View 
     style={styles.container}
@@ -45,4 +45,4 @@ const HomePage = () =>
 </View>
     ;
 
-export default HomePage;
+export default Cardapio;

@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const LoginPage = () => {
+const LoginPage = ({navigation}) => {
 
 
   const [showLoad, setLoad] = useState(false);
@@ -70,7 +70,7 @@ const LoginPage = () => {
     resizeMode="cover"
   >
       {showLoad ? <ActivityIndicator style={styles.loading} size="large" color="#0000ff" /> :
-      <LoginForm setLoad={setLoadInterval} disableButton={showLoad}></LoginForm>
+      <LoginForm navigation ={navigation} setLoad={setLoadInterval} disableButton={showLoad}></LoginForm>
     }
     <StatusBar barStyle="light-content" backgroundColor="#888AB2" />
    

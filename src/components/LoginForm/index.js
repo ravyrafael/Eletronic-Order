@@ -1,7 +1,7 @@
 import React, {  useState } from 'react'
 import { Text,View, TextInput,StyleSheet, Button,ActivityIndicator } from 'react-native'
 
-const LoginForm = ({setLoad, showLoad}) => {
+const LoginForm = ({setLoad, showLoad, navigation}) => {
         const [userName, setName] = useState('');
         const [pass, setPass] = useState('');
         return (    
@@ -28,7 +28,7 @@ const LoginForm = ({setLoad, showLoad}) => {
         <Button style={styles.buttonText} 
                     title="Login"
                     color='rgba(100,120,180,0.9)'
-                     onPress={()=> setLoad(userName, pass)}>
+                     onPress={()=> navigation.navigate('Home')}>
         </Button>
         </View>
         )}

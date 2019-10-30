@@ -1,4 +1,4 @@
-const category = [
+const cardapio = [
     {
       id: '1',
       title: 'Comidas',
@@ -9,11 +9,7 @@ const category = [
     },
     {
       id: '3',
-      title: 'Pizza',
-    },
-    {
-      id: '4',
       title: 'Outros',
     },
   ];
-  export default category;
+  export default cardapio;

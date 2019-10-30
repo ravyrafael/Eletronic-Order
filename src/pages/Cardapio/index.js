@@ -2,8 +2,9 @@ import React from 'react';
 import {
     FlatList, StyleSheet, Text, View, StatusBar,
   } from 'react-native';
-import CATEGORY from '~/mocks/categoryMocks'
-// import { Container } from './styles';
+  import {  useSelector } from 'react-redux'
+
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -16,34 +17,41 @@ const styles = StyleSheet.create({
         marginHorizontal: 16,
       },
       title: {
-        fontSize: 32,
+        fontSize: 31,
         alignItems: 'center',
       },
 
 })
 
 function Item({title}) {
-    console.log(title)
+
+
     return (
       <View style={styles.item}>
         <Text style={styles.title}>{title}</Text>
       </View>
     );
   }
-const Cardapio = ({navigation}) => 
 
+const Cardapio = ({navigation}) => 
+{   
+     const estado = useSelector(state => state.category);
+     console.log(estado)
+     const category = estado.category;
+    return(
 <View 
     style={styles.container}
     resizeMode="cover"
     >
+        <View></View>
      <FlatList
-        data={CATEGORY}
+        data={category}
         renderItem={({ item }) => <Item title={item.title} />}
         keyExtractor={item => item.id}
       />
     <StatusBar barStyle="dark-content" backgroundColor="#FFF" />
 
-</View>
+</View>)}
     ;
 
 export default Cardapio;

@@ -5,8 +5,9 @@ import {Provider } from 'react-redux';
 import LoginPage from '~/pages/Login';
 import  HomePage from '~/pages/Home';
 import  Cardapio from '~/pages/Cardapio';
-import store from './store/identity';
-
+import reducers  from './store/reducers';
+import { createStore } from 'redux'
+const store = createStore(reducers)
 
 
 const LoginStack = createStackNavigator({ LoginPage}, {

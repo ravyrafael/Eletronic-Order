@@ -4,6 +4,7 @@ import React from 'react';
 import {Provider } from 'react-redux'; 
 import LoginPage from '~/pages/Login';
 import  HomePage from '~/pages/Home';
+import  Cardapio from '~/pages/Cardapio';
 import store from './store/identity';
 
 
@@ -13,9 +14,20 @@ const LoginStack = createStackNavigator({ LoginPage}, {
     headerMode: 'none'
 })
 
-const HomeStack = createStackNavigator({ HomePage}, {
+const HomeStack = createStackNavigator(
+{ HomePage:{
+screen: HomePage,
+navigationOptions: {
+  headerTitle: 'Home',
+}},
+Cardapio:{
+  screen: Cardapio,
+  navigationOptions: {
+    headerTitle: 'Cardapio',
+  }}
+}, {
   initialRouteName: 'HomePage',
-  headerMode: 'none'
+  headerMode: 'screen'
 })
 
 const MainSwitch = createSwitchNavigator({

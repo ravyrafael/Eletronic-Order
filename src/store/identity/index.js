@@ -14,7 +14,7 @@ function identity(state = INITIAL_STATE, action){
         case 'ADD_IDENTITY':
             return {...state, data: [action.data]}
             break;
-    
+
         default:
             break;
     }

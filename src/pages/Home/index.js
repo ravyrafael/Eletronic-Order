@@ -1,4 +1,5 @@
 import React from 'react';
+import Icon from 'react-native-vector-icons/Ionicons';
 import {
     Text, StyleSheet, View, Dimensions,
   } from 'react-native';
@@ -16,71 +17,75 @@ const styles = StyleSheet.create({
         flex: 1,
 
       }, 
-    placeView:{
-        width: width - 40,
-        maxHeight: 200,
-        backgroundColor: 'gray',
+      rowView:{
+        marginVertical:10,
         marginHorizontal: 20,
-        marginVertical:20
+        flexDirection:'row'
+      },
+    placeView:{
+        
+        width:(width-40)/2,
+        height: height /  8,
+        marginHorizontal: 0,
+
+        borderRadius:30,
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      rigthView:{
+        backgroundColor: '#AAAA63',
+      },
+      
+      leftView:{
+        borderColor: '#ddd',
+        borderBottomWidth: 0,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        elevation: 1,
+        backgroundColor: '#FBAA63',
       },
       title: {
-        fontSize: 32,
+        fontSize: 17,
+        fontWeight: 'bold'
+
       },
 
 })
 
 
-const HomePage = () => 
+const HomePage = ({navigation}) => 
 
 <ScrollView
 style={styles.placeContainer}
 scrollEnabled
 >
-  <View style={styles.placeView}>
-    <Text style={styles.title}>{`ID: 1`}</Text>
+ <View style={styles.rowView}>
+  <View style={[styles.placeView, styles.leftView]}  onStartShouldSetResponder={()=> {console.log('bla') ;navigation.navigate('Cardapio')}}>
+    <Text style={styles.title}><Icon name="md-bookmarks" size={30} color="#000000" /> { ' Cardápio'}</Text>
   </View>
-  <View style={styles.placeView}>
-    <Text style={styles.title}>{`ID: 2`}</Text>
+    <View style={[styles.placeView, styles.rigthView]}>
+        <Text style={styles.title}><Icon name="md-bookmarks" size={30} color="#000000" /> { ' Comandas'}</Text>
+    </View>
   </View>
-  <View style={styles.placeView}>
-    <Text style={styles.title}>{`ID: 3`}</Text>
+  <View style={styles.rowView}>
+  <View style={[styles.placeView, styles.leftView]}  onStartShouldSetResponder={()=> {console.log('bla') ;navigation.navigate('Cardapio')}}>
+    <Text style={styles.title}><Icon name="md-bookmarks" size={30} color="#000000" /> { ' Cardápio'}</Text>
   </View>
-  <View style={styles.placeView}>
-    <Text style={styles.title}>{`ID: 4`}</Text>
+    <View style={[styles.placeView, styles.rigthView]}>
+        <Text style={styles.title}><Icon name="md-bookmarks" size={30} color="#000000" /> { ' Comandas'}</Text>
+    </View>
   </View>
-  <View style={styles.placeView}>
-    <Text style={styles.title}>{`ID: 5`}</Text>
+  <View style={styles.rowView}>
+  <View style={[styles.placeView, styles.leftView]}  onStartShouldSetResponder={()=> {console.log('bla') ;navigation.navigate('Cardapio')}}>
+    <Text style={styles.title}><Icon name="md-bookmarks" size={30} color="#000000" /> { ' Cardápio'}</Text>
   </View>
-  <View style={styles.placeView}>
-    <Text style={styles.title}>{`ID: 6`}</Text>
+    <View style={[styles.placeView, styles.rigthView]}>
+        <Text style={styles.title}><Icon name="md-bookmarks" size={30} color="#000000" /> { ' Comandas'}</Text>
+    </View>
   </View>
-  <View style={styles.placeView}>
-    <Text style={styles.title}>{`ID: 7`}</Text>
-  </View>
-  <View style={styles.placeView}>
-    <Text style={styles.title}>{`ID: 8`}</Text>
-  </View>
-  <View style={styles.placeView}>
-    <Text style={styles.title}>{`ID: 9`}</Text>
-  </View>
-  <View style={styles.placeView}>
-    <Text style={styles.title}>{`ID: 10`}</Text>
-  </View>
-  <View style={styles.placeView}>
-    <Text style={styles.title}>{`ID: 11`}</Text>
-  </View>
-  <View style={styles.placeView}>
-    <Text style={styles.title}>{`ID: 12`}</Text>
-  </View>
-  <View style={styles.placeView}>
-    <Text style={styles.title}>{`ID: 13`}</Text>
-  </View>
-  <View style={styles.placeView}>
-    <Text style={styles.title}>{`ID: 14`}</Text>
-  </View>
-  <View style={styles.placeView}>
-    <Text style={styles.title}>{`ID: 15`}</Text>
-  </View>
+  
 
 </ScrollView>
 

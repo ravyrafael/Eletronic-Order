@@ -7,7 +7,7 @@ import CATEGORY from '~/mocks/categoryMocks'
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-            paddingHorizontal: 20,
+        paddingHorizontal: 20,
     },  
     item: {
         backgroundColor: 'gray',
@@ -30,11 +30,12 @@ function Item({title}) {
       </View>
     );
   }
-const Cardapio = () => 
+const Cardapio = ({navigation}) => 
 
 <View 
     style={styles.container}
-    resizeMode="cover">
+    resizeMode="cover"
+    >
      <FlatList
         data={CATEGORY}
         renderItem={({ item }) => <Item title={item.title} />}

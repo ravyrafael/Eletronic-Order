@@ -1,8 +1,9 @@
 import React from 'react';
 import {
-    FlatList, StyleSheet, Text, View, StatusBar,
+    FlatList,Button, StyleSheet, Text, View, StatusBar,
   } from 'react-native';
-  import {  useSelector } from 'react-redux'
+  import {  useSelector, useDispatch } from 'react-redux'
+  import {Creators} from '../../store/ducks/category'
 
 
 const styles = StyleSheet.create({
@@ -27,7 +28,8 @@ function Item({title}) {
 
 
     return (
-      <View style={styles.item}>
+      <View 
+      onStartShouldSetResponder={()=>''} style={styles.item}>
         <Text style={styles.title}>{title}</Text>
       </View>
     );
@@ -35,15 +37,19 @@ function Item({title}) {
 
 const Cardapio = ({navigation}) => 
 {   
-     const estado = useSelector(state => state.category);
-     console.log(estado)
-     const category = estado.category;
+     const category = useSelector(state => state.category);
+     const dispatch = useDispatch();
+     
     return(
 <View 
     style={styles.container}
     resizeMode="cover"
     >
-        <View></View>
+            <Button style={styles.buttonText} 
+                    title="addburger"
+                    color='rgba(100,120,180,0.9)'
+                     onPress={()=> dispatch(Creators.addCategory("Burger"))}></Button>
+
      <FlatList
         data={category}
         renderItem={({ item }) => <Item title={item.title} />}

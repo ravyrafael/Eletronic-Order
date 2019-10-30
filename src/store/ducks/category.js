@@ -1,35 +1,47 @@
 
-import category from  '../../mocks/categoryMocks';
+import data from  '../../mocks/categoryMocks';
 export const Types = {
-    ADD: "cidades/ADD",
-    REMOVE: "cidades/REMOVE",
-    LIST: "cidades/LIST",
-    DETAIL: "cidades/DETAIL"
+    ADD: "category/ADD",
+    REMOVE: "category/REMOVE",
+    LIST: "category/LIST",
+    DETAIL: "category/DETAIL"
 };
 
-const INITIAL_STATE = category
+const INITIAL_STATE = data
 
 export default function (state = INITIAL_STATE, action) {
     switch (action.type) {
         case Types.ADD:
-            return { ...state, category: action.payload };
+            console.log(state)
+            var id = state[state.length-1].id + 1;
+            return [
+                ...state,
+                {
+                  id: id,
+                  title: action.title,
+                }
+              ]
         case Types.REMOVE:
             return { ...state, category: action.payload };
 
         case Types.LIST:
-            return { ...state, category: action.payload.category };
+            return { category: action.payload.category };
         case Types.DETAIL:
             return { ...state, category: action.payload.data };
         default:
-            return {category:state};
+            return data;
 
     }
 }
 
 export const Creators = {
+    addCategory: title => ({
+        type: Types.ADD,
+        title
+      }),
     ListCategory: () => {
         //const request = api.get();
-        const request = category;
+        const request = data;
         return {
             type: Types.LIST,
             payload: request

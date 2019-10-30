@@ -62,7 +62,8 @@ style={styles.placeContainer}
 scrollEnabled
 >
  <View style={styles.rowView}>
-  <View style={[styles.placeView, styles.leftView]}  onStartShouldSetResponder={()=> navigation.navigate('Cardapio')}>
+  <View style={[styles.placeView, styles.leftView]}  
+  onStartShouldSetResponder={()=> navigation.navigate('Cardapio')}>
     <Text style={styles.title}><Icon name="md-bookmarks" size={30} color="#000000" /> { ' Cardápio'}</Text>
   </View>
     <View style={[styles.placeView, styles.rigthView]}>

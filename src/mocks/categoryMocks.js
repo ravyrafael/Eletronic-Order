@@ -1,4 +1,4 @@
-const category = [
+const data = [
     {
       id: '1',
       title: 'Comidas',
@@ -16,4 +16,4 @@ const category = [
       title: 'Outros',
     },
   ];
-  export default category;
+  export default data;

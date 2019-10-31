@@ -41,7 +41,6 @@ const MainSwitch = createSwitchNavigator({
 );
 
 const Navigation = createAppContainer(MainSwitch);
-
 export default class Routes extends React.Component {
     render() {
       return (

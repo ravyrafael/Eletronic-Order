@@ -1,39 +1,47 @@
 
 import cardapio from  '../../mocks/cardapioMocks';
 export const Types = {
-    ADD: "cidades/ADD",
-    REMOVE: "cidades/REMOVE",
-    LIST: "cidades/LIST",
-    DETAIL: "cidades/DETAIL"
+    ADD: "cardapio/ADD",
+    REMOVE: "cardapio/REMOVE",
+    LIST: "cardapio/LIST",
+    DETAIL: "cardapio/DETAIL"
 };
 
-const INITIAL_STATE = [{
-    id: 1,
-    nome: '',
-
-}]
+const INITIAL_STATE = cardapio
 
 export default function (state = INITIAL_STATE, action) {
     switch (action.type) {
         case Types.ADD:
-            return { ...state, cardapio: action.payload };
+
+            var id = state[state.length-1].id + 1;
+            return [
+                ...state,
+                {
+                  id: id,
+                  title: action.title,
+                }
+              ]
         case Types.REMOVE:
             return { ...state, cardapio: action.payload };
 
         case Types.LIST:
-            return { ...state, cardapio: action.payload.data };
+            return { cardapio: action.payload.cardapio };
         case Types.DETAIL:
-            return { ...state, cardapio: action.payload.data };
+            return { ...state, cardapio: action.payload.cardapio };
         default:
-            return {cardapio:state};
+            return cardapio;
 
     }
 }
 
 export const Creators = {
-    ListCardapio: () => {
+    addcardapio: title => ({
+        type: Types.ADD,
+        title
+      }),
+    Listcardapio: () => {
         //const request = api.get();
-        const request = [];
+        const request = cardapio;
         return {
             type: Types.LIST,
             payload: request

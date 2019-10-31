@@ -4,6 +4,8 @@ import {
     Text, StyleSheet, View, Dimensions,
   } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import {  useSelector, useDispatch } from 'react-redux'
+import Cardapio from '../Cardapio'
 
   const {height, width} = Dimensions.get('window');
 // import { Container } from './styles';
@@ -55,12 +57,16 @@ const styles = StyleSheet.create({
 })
 
 
-const HomePage = ({navigation}) => 
+const HomePage = ({navigation})=>
+{
 
+return (
 <ScrollView
 style={styles.placeContainer}
 scrollEnabled
 >
+
+
  <View style={styles.rowView}>
   <View style={[styles.placeView, styles.leftView]}  
   onStartShouldSetResponder={()=> navigation.navigate('Cardapio')}>
@@ -88,6 +94,6 @@ scrollEnabled
   </View>
   
 
-</ScrollView>
+</ScrollView>)}
 
 export default HomePage;

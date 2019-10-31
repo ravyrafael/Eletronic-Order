@@ -6,6 +6,7 @@ import {
   import {Creators} from '../../store/ducks/category'
 
 
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,

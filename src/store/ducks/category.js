@@ -1,5 +1,5 @@
 
-import data from  '../../mocks/categoryMocks';
+import category from  '../../mocks/categoryMocks';
 export const Types = {
     ADD: "category/ADD",
     REMOVE: "category/REMOVE",
@@ -7,12 +7,11 @@ export const Types = {
     DETAIL: "category/DETAIL"
 };
 
-const INITIAL_STATE = data
+const INITIAL_STATE = category
 
 export default function (state = INITIAL_STATE, action) {
     switch (action.type) {
         case Types.ADD:
-            console.log(state)
             var id = state[state.length-1].id + 1;
             return [
                 ...state,
@@ -27,9 +26,10 @@ export default function (state = INITIAL_STATE, action) {
         case Types.LIST:
             return { category: action.payload.category };
         case Types.DETAIL:
-            return { ...state, category: action.payload.data };
+            return { ...state, category: action.payload.category };
         default:
-            return data;
+
+            return category;
 
     }
 }
@@ -41,7 +41,7 @@ export const Creators = {
       }),
     ListCategory: () => {
         //const request = api.get();
-        const request = data;
+        const request = category;
         return {
             type: Types.LIST,
             payload: request

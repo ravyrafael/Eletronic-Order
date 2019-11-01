@@ -1,9 +1,12 @@
 import React, {  useState } from 'react'
 import { Text,View, TextInput,StyleSheet, Button,ActivityIndicator } from 'react-native'
 
-const LoginForm = ({setLoad, showLoad, navigation}) => {
+
+const LoginForm = ({setLoad, disableButton}) => {
         const [userName, setName] = useState('');
         const [pass, setPass] = useState('');
+        
+
         return (    
              <View style = {styles.container}>
 
@@ -28,7 +31,7 @@ const LoginForm = ({setLoad, showLoad, navigation}) => {
         <Button style={styles.buttonText} 
                     title="Login"
                     color='rgba(100,120,180,0.9)'
-                     onPress={()=> navigation.navigate('Home')}>
+                     onPress={()=> setLoad(userName,pass)}>
         </Button>
         </View>
         )}

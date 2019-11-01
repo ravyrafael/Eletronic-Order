@@ -50,16 +50,16 @@ const LoginPage = ({navigation}) => {
 
 
   const [showLoad, setLoad] = useState(false);
+
   var setLoadInterval = (userName, pass)=>{
     setLoad(true);
     var userDefault = new User();
-    console.log(userDefault)
     let userReturn = userDefault.Auth(userName, pass)
     setTimeout(()=>{ 
-    setLoad(false);
-    console.log(userReturn)
-    return userReturn.length > 0
-}, 3000);
+          setLoad(false);
+        if(userReturn.length > 0)
+         navigation.navigate('Home');
+      }, 1000);
   }
   return(
   <>
@@ -69,7 +69,7 @@ const LoginPage = ({navigation}) => {
     style={styles.container}
     resizeMode="cover"
   >
-      {showLoad ? <ActivityIndicator style={styles.loading} size="large" color="#0000ff" /> :
+  {  showLoad ? <ActivityIndicator style={styles.loading} size="large" color="#0000ff" /> :
       <LoginForm navigation ={navigation} setLoad={setLoadInterval} disableButton={showLoad}></LoginForm>
     }
     <StatusBar barStyle="light-content" backgroundColor="#888AB2" />

@@ -17,8 +17,10 @@ export default class User {
     
     }
     Auth(user,pass){
+
       return this.users
       .filter((item)=> item.name.toUpperCase() == user.toUpperCase()&&item.pass == pass)
-      .map((item)=> {item.name, item.pass});
+      .map((item)=>{return {name:item.name, id: item.id}}
+        );
     }
 }

@@ -1,5 +1,6 @@
 import React, {  useState } from 'react'
-import { Text,View, TextInput,StyleSheet, Button,ActivityIndicator } from 'react-native'
+import { View, TextInput,StyleSheet } from 'react-native'
+import CustonBtn from '../CustonBtn'
 
 
 const LoginForm = ({setLoad, disableButton}) => {
@@ -28,11 +29,10 @@ const LoginForm = ({setLoad, disableButton}) => {
               placeholderTextColor='rgba(225,225,225,0.7)' 
               secureTextEntry/>
 
-        <Button style={styles.buttonText} 
-                    title="Login"
+        <CustonBtn title='Login'
                     color='rgba(100,120,180,0.9)'
                      onPress={()=> setLoad(userName,pass)}>
-        </Button>
+        </CustonBtn>
         </View>
         )}
 
@@ -53,7 +53,6 @@ const styles = StyleSheet.create({
      padding: 20,
      width: 300
     },
-
     input:{
         height: 40,
         backgroundColor: 'rgba(225,225,225,0.2)',

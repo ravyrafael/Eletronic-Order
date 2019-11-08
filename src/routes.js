@@ -7,6 +7,9 @@ import  HomePage from '~/pages/Home';
 import  Cardapio from '~/pages/Cardapio';
 import reducers  from './store/reducers';
 import { createStore } from 'redux'
+
+
+
 const store = createStore(reducers)
 
 

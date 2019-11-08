@@ -1,16 +1,16 @@
 import React, {  useState } from 'react'
-import { View, TextInput,StyleSheet } from 'react-native'
+import { View, TextInput,StyleSheet, Text } from 'react-native'
 import CustonBtn from '../CustonBtn'
 
 
-const LoginForm = ({setLoad, disableButton}) => {
+const LoginForm = ({setLoad, error}) => {
         const [userName, setName] = useState('');
         const [pass, setPass] = useState('');
         
 
         return (    
              <View style = {styles.container}>
-
+                 {error != "" && <Text style={styles.text}>{error}</Text>}
 <TextInput style = {styles.input} 
                autoCapitalize="none" 
                autoCorrect={false} 
@@ -59,6 +59,12 @@ const styles = StyleSheet.create({
         marginBottom: 8,
         padding: 10,
         borderRadius:15,
+        color: '#fff'
+    },
+    text:{
+        height: 40,
+        marginBottom: 4,
+        padding: 10,
         color: '#fff'
     },
 

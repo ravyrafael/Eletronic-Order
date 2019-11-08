@@ -1,11 +1,10 @@
 import React ,{useState}from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import {
-  Text, ActivityIndicator, StyleSheet, Dimensions, View, StatusBar,
+  Text, ActivityIndicator, StyleSheet, Dimensions, Modal, StatusBar,
 } from 'react-native';
 import LoginForm from '~/components/LoginForm'
-import User from '~/mocks/usersMocks.js';
-import repos from '~/services/repo'
+import firebase from 'firebase';
 
 const styles = StyleSheet.create({
   container: {
@@ -51,19 +50,20 @@ const LoginPage = ({navigation}) => {
 
 
   const [showLoad, setLoad] = useState(false);
+  const [error, setError] = useState("");
 
-  var setLoadInterval = (userName, pass)=>{
-    var database = repos();
-    console.log(database)
+
+  var userAuth = (email, pass)=>{
     setLoad(true);
+    setInterval(() => {
+      firebase.auth().signInWithEmailAndPassword(email, pass)
+      .then(value => console.log(value))
+      .catch(erro => {setError(erro.message);console.log(erro)})
+      .finally(() =>setLoad(false));
+    }, 3000);
 
-    var userDefault = new User();
-    let userReturn = userDefault.Auth(userName, pass)
-    setTimeout(()=>{ 
-          setLoad(false);
-        if(userReturn.length > 0)
-         navigation.navigate('Home');
-      }, 1000);
+
+
   }
   return(
   <>
@@ -73,9 +73,13 @@ const LoginPage = ({navigation}) => {
     style={styles.container}
     resizeMode="cover"
   >
-  {  showLoad ? <ActivityIndicator style={styles.loading} size="large" color="#0000ff" /> :
-      <LoginForm navigation ={navigation} setLoad={setLoadInterval} disableButton={showLoad}></LoginForm>
-    }
+  <Modal 
+  visible={showLoad}          
+   transparent={true}> 
+   <ActivityIndicator style={styles.loading} size="large" color="#0000ff" /> 
+  </Modal>
+      <LoginForm navigation ={navigation} error={error} setError={setError} setLoad={userAuth}></LoginForm>
+    
     <StatusBar barStyle="light-content" backgroundColor="#888AB2" />
    
   </LinearGradient>

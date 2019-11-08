@@ -10,7 +10,7 @@ const LoginForm = ({setLoad, error}) => {
 
         return (    
              <View style = {styles.container}>
-                 {error != "" && <Text style={styles.text}>{error}</Text>}
+
 <TextInput style = {styles.input} 
                autoCapitalize="none" 
                autoCorrect={false} 
@@ -28,6 +28,7 @@ const LoginForm = ({setLoad, error}) => {
                onChangeText={(text)=> setPass(text)}
               placeholderTextColor='rgba(225,225,225,0.7)' 
               secureTextEntry/>
+                               {error != "" && <Text style={styles.text}>{error}</Text>}
 
         <CustonBtn title='Login'
                     color='rgba(100,120,180,0.9)'
@@ -63,9 +64,9 @@ const styles = StyleSheet.create({
     },
     text:{
         height: 40,
-        marginBottom: 4,
         padding: 10,
-        color: '#fff'
+        marginTop:-12,
+        color: '#E34444'
     },
 
     buttonText:{

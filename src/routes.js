@@ -6,11 +6,14 @@ import LoginPage from '~/pages/Login';
 import  HomePage from '~/pages/Home';
 import  Cardapio from '~/pages/Cardapio';
 import reducers  from './store/reducers';
-import { createStore } from 'redux'
+import { createStore,combineReducers } from 'redux';
+import firebase from 'firebase';
+import { ReactReduxFirebaseProvider, firebaseReducer } from 'react-redux-firebase'
 
-
-
-const store = createStore(reducers)
+const rootReducer = combineReducers({
+  firebase: firebaseReducer
+  // firestore: firestoreReducer // <- needed if using firestore
+})
 
 
 const LoginStack = createStackNavigator({ LoginPage}, {
@@ -44,11 +47,43 @@ const MainSwitch = createSwitchNavigator({
 );
 
 const Navigation = createAppContainer(MainSwitch);
+
+var firebaseConfig = {
+  apiKey: "AIzaSyCno596fleJdcEhCgA65bIeJM7EVD8TZiI",
+  authDomain: "eletronicorder.firebaseapp.com",
+  databaseURL: "https://eletronicorder.firebaseio.com",
+  projectId: "eletronicorder",
+  storageBucket: "eletronicorder.appspot.com",
+  messagingSenderId: "684419841593",
+  appId: "1:684419841593:web:d7bc4656fb9e35bab457e8"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+const initialState = {}
+const store = createStore(rootReducer, initialState)
+const rrfConfig = {
+  userProfile: 'users'
+  // useFirestoreForProfile: true // Firestore for Profile instead of Realtime DB
+}
+const rrfProps = {
+  firebase,
+  config: rrfConfig,
+  dispatch: store.dispatch,
+  // createFirestoreInstance // <- needed if using firestore
+}
+
+
 export default class Routes extends React.Component {
+
+
+
     render() {
       return (
         <Provider store={store}>
+      <ReactReduxFirebaseProvider {...rrfProps}>
           <Navigation />
+          </ReactReduxFirebaseProvider>
         </Provider>
       );
     }

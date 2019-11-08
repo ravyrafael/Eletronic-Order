@@ -3,8 +3,10 @@ import LinearGradient from 'react-native-linear-gradient';
 import {
   Text, ActivityIndicator, StyleSheet, Dimensions, Modal, StatusBar,
 } from 'react-native';
+
 import LoginForm from '~/components/LoginForm'
 import firebase from 'firebase';
+import category from '../../mocks/categoryMocks'
 
 const styles = StyleSheet.create({
   container: {
@@ -48,19 +50,19 @@ const styles = StyleSheet.create({
 
 const LoginPage = ({navigation}) => {
 
-
   const [showLoad, setLoad] = useState(false);
   const [error, setError] = useState("");
 
 
   var userAuth = (email, pass)=>{
+    console.log(category)
     setLoad(true);
-    setInterval(() => {
+    setTimeout(() => {
       firebase.auth().signInWithEmailAndPassword(email, pass)
-      .then(value => console.log(value))
+      .then(value => {console.log(value);setError("");navigation.navigate('Home')})
       .catch(erro => {setError(erro.message);console.log(erro)})
       .finally(() =>setLoad(false));
-    }, 3000);
+    }, 500);
 
 
 

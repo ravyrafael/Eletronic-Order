@@ -5,6 +5,7 @@ import {
   } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import {  useSelector, useDispatch } from 'react-redux'
+
 import Cardapio from '../Cardapio'
 
   const {height, width} = Dimensions.get('window');

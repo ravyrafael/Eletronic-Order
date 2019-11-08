@@ -1,4 +1,5 @@
 import React from 'react';
+import { useFirebaseConnect, isLoaded, isEmpty } from 'react-redux-firebase'
 import {
     FlatList,Button, StyleSheet, Text, View, StatusBar,
   } from 'react-native';
@@ -26,7 +27,7 @@ const styles = StyleSheet.create({
 })
 
 function Item({title}) {
-
+  
 
     return (
       <View 
@@ -38,8 +39,13 @@ function Item({title}) {
 
 const Cardapio = ({navigation}) => 
 {   
-     const category = useSelector(state => state.category);
-     const dispatch = useDispatch();
+  const categoryQuery = {
+    path: "category",
+    queryParams: ["limitToLast=10"]
+  };
+    useFirebaseConnect([categoryQuery])
+    
+    const category = useSelector(state => state.firebase.ordered.category)
      
     return(
 <View 
@@ -51,11 +57,13 @@ const Cardapio = ({navigation}) =>
                     color='rgba(100,120,180,0.9)'
                      onPress={()=> dispatch(Creators.addCategory("Burger"))}></Button>
 
+{isLoaded &&
      <FlatList
         data={category}
-        renderItem={({ item }) => <Item title={item.title} />}
-        keyExtractor={item => item.id}
+        renderItem={({ item }) => <Item title={item.value.title} />}
+        keyExtractor={item => item.key}
       />
+    }
     <StatusBar barStyle="dark-content" backgroundColor="#FFF" />
 
 </View>)}

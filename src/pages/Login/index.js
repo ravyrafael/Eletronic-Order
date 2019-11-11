@@ -3,10 +3,12 @@ import LinearGradient from 'react-native-linear-gradient';
 import {
   Text, ActivityIndicator, StyleSheet, Dimensions, Modal, StatusBar,
 } from 'react-native';
-
+import { useFirebaseConnect, isLoaded, isEmpty } from 'react-redux-firebase'
 import LoginForm from '~/components/LoginForm'
 import firebase from 'firebase';
-import category from '../../mocks/categoryMocks'
+import {  useSelector, useDispatch } from 'react-redux'
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -52,17 +54,45 @@ const LoginPage = ({navigation}) => {
 
   const [showLoad, setLoad] = useState(false);
   const [error, setError] = useState("");
-
-
-  var userAuth = (email, pass)=>{
-    console.log(category)
+  const userQuery = {
+    path: "user"
+  };
+    useFirebaseConnect([userQuery])
+    
+    const users = useSelector(state => state.firebase.ordered.user)
+  var userAuth = (email, pass , seccondTry)=>{
     setLoad(true);
+    while(!isLoaded){
+      setTimeout(() => {
+        console.log("Tryig to get users.")
+      }, 500);
+
+    }
     setTimeout(() => {
       firebase.auth().signInWithEmailAndPassword(email, pass)
-      .then(value => {console.log(value);setError("");navigation.navigate('Home')})
-      .catch(erro => {setError(erro.message);console.log(erro)})
-      .finally(() =>setLoad(false));
+      .then(value => {setError("");navigation.navigate('Home')})
+      .catch(erro => {
+          console.log(erro.message);
+          if(erro.message == "The email address is badly formatted."){
+                if(!seccondTry){
+                  let user = users.find(x=>x.key == email ||x.value.name.toUpperCase() == email.toUpperCase());
+                  if(users){
+                    userAuth(user.value.email, pass, true)
+                  }
+              }
+              else{
+                setError(erro.message);
+                setLoad(false)
+              }
+            }
+            else{
+              setError(erro.message);
+              setLoad(false)
+            }
+
+        })
     }, 500);
+    
 
 
 

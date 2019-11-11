@@ -4,6 +4,7 @@ import '~/config/ReactotronConfig';
 
 import Routes from '~/routes';
 
+console.disableYellowBox = true;
 const App = () => <Routes />;
 
 export default App;
